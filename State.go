@@ -6,7 +6,7 @@ import (
 
 	// Third party packages
 	"github.com/julienschmidt/httprouter"
-	"State/controllers"
+	"github.com/4nthem/State/controllers"
 	"gopkg.in/mgo.v2"
 )
 
@@ -15,10 +15,11 @@ func main() {
 	router := httprouter.New()
 
 	// Get a UserController instance
-	userController := controllers.NewUserController(initDb())
+	// userController := controllers.NewUserController(initDb())
+	userController := controllers.NewUserController()
 
-	// Get a user resource
-	router.GET("/user/:id", userController.GetUser)
+	// Get all user resources
+	router.GET("/users", userController.GetUsers)
 
 	// Create a new user
 	router.POST("/user", userController.CreateUser)
