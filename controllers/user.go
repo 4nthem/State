@@ -18,12 +18,12 @@ type (
 )
 
 // NewUserController provides a reference to a UserController with provided mongo session
-func NewUserController(s *mgo.Session) *UserController {
-	return &UserController{s}
+func NewUserController(session *mgo.Session) *UserController {
+	return &UserController{session}
 }
 
 // GetUser retrieves an individual user resource
-func (uc UserController) GetUser(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+func (userController UserController) GetUser(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
 	// get user
 	user := models.User{
@@ -40,7 +40,7 @@ func (uc UserController) GetUser(w http.ResponseWriter, r *http.Request, p httpr
 }
 
 // CreateUser creates a new user resource
-func (uc UserController) CreateUser(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+func (userController UserController) CreateUser(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	
 	// create user
 
@@ -51,7 +51,7 @@ func (uc UserController) CreateUser(w http.ResponseWriter, r *http.Request, p ht
 }
 
 // RemoveUser removes an existing user resource
-func (uc UserController) RemoveUser(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+func (userController UserController) RemoveUser(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	
 	// delete user
 

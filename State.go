@@ -12,28 +12,28 @@ import (
 
 func main() {
 	// Instantiate a new router
-	r := httprouter.New()
+	router := httprouter.New()
 
 	// Get a UserController instance
-	uc := controllers.NewUserController(initDb())
+	userController := controllers.NewUserController(initDb())
 
 	// Get a user resource
-	r.GET("/user/:id", uc.GetUser)
+	router.GET("/user/:id", userController.GetUser)
 
 	// Create a new user
-	r.POST("/user", uc.CreateUser)
+	router.POST("/user", userController.CreateUser)
 
 	// Remove an existing user
-	r.DELETE("/user/:id", uc.RemoveUser)
+	router.DELETE("/user/:id", userController.RemoveUser)
 
 	// Fire up the server
-	http.ListenAndServe("localhost:3000", r)
+	http.ListenAndServe("localhost:3000", router)
 }
 
 // getSession creates a new mongo session and panics if connection error occurs
 func initDb() *mgo.Session {
 	// Connect to our local mongo
-	s, err := mgo.Dial("mongodb://<uri goes here>")
+	session, err := mgo.Dial("mongodb://<uri goes here>")
 
 	// Check if connection error, is mongo running?
 	if err != nil {
@@ -41,5 +41,5 @@ func initDb() *mgo.Session {
 	}
 
 	// Deliver session
-	return s
+	return session
 }
