@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/julienschmidt/httprouter"
+	"github.com/4nthem/State/Godeps/_workspace/src/github.com/julienschmidt/httprouter"
 	"github.com/4nthem/State/models"
 	// "gopkg.in/mgo.v2"
-	"gopkg.in/mgo.v2/bson"
+	"github.com/4nthem/State/Godeps/_workspace/src/gopkg.in/mgo.v2/bson"
 )
 
 type (
@@ -22,19 +22,19 @@ type (
 // 	return &UserController{session}
 // }
 
-func NewUserController() *UserController{
+func NewUserController() *UserController {
 	return &UserController{}
 }
 
-// gets an individual user 
+// gets an individual user
 func (userController UserController) GetUsers(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
 
 	// get user
 	user := models.User{
 		// Id:     params.ByName("id"),
-		Id: 	bson.NewObjectId(),
-	    Name:   "John Doe",
-	    Email:  "johndoe@email.com",
+		Id:    bson.NewObjectId(),
+		Name:  "John Doe",
+		Email: "johndoe@email.com",
 	}
 
 	userjson, _ := json.Marshal(user)
@@ -44,20 +44,19 @@ func (userController UserController) GetUsers(writer http.ResponseWriter, reques
 	fmt.Fprintf(writer, "Found User: %s", userjson)
 }
 
-// creates a new user 
+// creates a new user
 func (userController UserController) CreateUser(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
-	
-	// create user
 
+	// create user
 
 	writer.Header().Set("Content-Type", "application/json")
 	writer.WriteHeader(201)
 	fmt.Fprintf(writer, "Created User")
 }
 
-// removes an existing user 
+// removes an existing user
 func (userController UserController) RemoveUser(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
-	
+
 	// delete user
 
 	writer.Header().Set("Content-Type", "application/json")
