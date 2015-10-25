@@ -25,5 +25,6 @@ cd into the 'State' folder to compile app:
 run:
 	'State'
 
+
 open new terminal and run:
 	'curl http://localhost:3000/users'
