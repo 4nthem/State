@@ -1,6 +1,6 @@
 package models
 
-import "github.com/4nthem/State/Godeps/_workspace/src/gopkg.in/mgo.v2/bson"
+import "gopkg.in/mgo.v2/bson"
 
 type (
 	// User represents the structure of our resource

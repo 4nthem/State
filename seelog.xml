@@ -1,0 +1,20 @@
+<seelog type="adaptive" mininterval="2000000" maxinterval="100000000" critmsgcount="500" minlevel="debug" maxlevel="error">
+    <exceptions>
+        <exception filepattern="test*" minlevel="error"/>
+    </exceptions>
+    <outputs formatid="all">
+        <file path="all.log"/>
+        <filter levels="info">
+          <console formatid="fmtinfo"/>
+        </filter>
+        <filter levels="error,critical" formatid="fmterror">
+          <console/>
+          <file path="errors.log"/>
+        </filter>
+    </outputs>
+    <formats>
+        <format id="fmtinfo" format="[%Level] [%Time] %Msg%n"/>
+        <format id="fmterror" format="[%LEVEL] [%Time] [%FuncShort @ %File.%Line] %Msg%n"/>
+        <format id="all" format="[%Level] [%Time] [@ %File.%Line] %Msg%n"/>
+    </formats>
+</seelog>

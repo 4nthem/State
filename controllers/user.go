@@ -5,10 +5,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/4nthem/State/Godeps/_workspace/src/github.com/julienschmidt/httprouter"
+	"github.com/julienschmidt/httprouter"
 	"github.com/4nthem/State/models"
-	// "gopkg.in/mgo.v2"
-	"github.com/4nthem/State/Godeps/_workspace/src/gopkg.in/mgo.v2/bson"
+	"gopkg.in/mgo.v2/bson"
 )
 
 type (

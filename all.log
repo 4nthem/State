@@ -1,0 +1,24 @@
+[Error] [23:36:33] [@ config.go.24] Problem grabbing configurationopen env/config.json: no such file or directory
+[Error] [23:36:33] [@ server.go.33] Error getting Configuration
+[Debug] [23:36:33] [@ server.go.36] Confugration: { }
+[Info] [23:36:41] [@ death.go.36] Shutdown started...
+[Debug] [23:36:41] [@ death.go.38] Closing 0 objects
+[Info] [23:36:41] [@ start.go.21] Finished shutting down webserver
+[Error] [23:37:27] [@ config.go.24] Problem grabbing configurationopen env/config.json: no such file or directory
+[Error] [23:37:27] [@ server.go.33] Error getting Configuration: open env/config.json: no such file or directory
+[Debug] [23:37:27] [@ server.go.36] Confugration: { }
+[Info] [23:38:31] [@ death.go.36] Shutdown started...
+[Debug] [23:38:31] [@ death.go.38] Closing 0 objects
+[Info] [23:38:31] [@ start.go.21] Finished shutting down webserver
+[Error] [23:38:35] [@ config.go.24] Problem grabbing configurationopen env/config.json: no such file or directory
+[Info] [23:40:00] [@ death.go.36] Shutdown started...
+[Debug] [23:40:00] [@ death.go.38] Closing 0 objects
+[Info] [23:40:00] [@ start.go.21] Finished shutting down webserver
+[Error] [23:40:04] [@ config.go.24] Problem grabbing configurationopen env/config.json: no such file or directory
+[Info] [23:40:11] [@ death.go.36] Shutdown started...
+[Debug] [23:40:11] [@ death.go.38] Closing 0 objects
+[Info] [23:40:11] [@ start.go.21] Finished shutting down webserver
+[Debug] [23:40:49] [@ server.go.36] Confugration: {3000 True}
+[Info] [23:43:44] [@ death.go.36] Shutdown started...
+[Debug] [23:43:44] [@ death.go.38] Closing 0 objects
+[Info] [23:43:44] [@ start.go.21] Finished shutting down webserver
