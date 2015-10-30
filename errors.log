@@ -1,6 +1,0 @@
-[ERROR] [23:36:33] [GetConfig @ config.go.24] Problem grabbing configurationopen env/config.json: no such file or directory
-[ERROR] [23:36:33] [StartServer @ server.go.33] Error getting Configuration
-[ERROR] [23:37:27] [GetConfig @ config.go.24] Problem grabbing configurationopen env/config.json: no such file or directory
-[ERROR] [23:37:27] [StartServer @ server.go.33] Error getting Configuration: open env/config.json: no such file or directory
-[ERROR] [23:38:35] [GetConfig @ config.go.24] Problem grabbing configurationopen env/config.json: no such file or directory
-[ERROR] [23:40:04] [GetConfig @ config.go.24] Problem grabbing configurationopen env/config.json: no such file or directory
