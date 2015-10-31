@@ -4,7 +4,7 @@
 
 ### Installation:
 	1. Make sure you are in the State directory
-	2. Run the command `go build`
+	2. Run the command 'go build'
 
 ### Launching Application:
 	1. Run the command 'State'
