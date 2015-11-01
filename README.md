@@ -23,13 +23,12 @@
 	- Errors are filtered as well to errors.log
 
 
-### Testing
+### Testing: [Intro to GoConvey](https://www.youtube.com/watch?v=wlUKRxWEELU)
 	*Make sure you run the command "go get github.com/smartystreets/goconvey" first*
 	We are using the GoConvey continuous testing framework
 	1. In a different terminal tab run "goconvey" (assuming you have go/bin in your PATH variable)
 	2. It will auto open a tab showing the state of the tests. This will rerun the tests every time a file is saved.
 	
 	- There is an option for it to send desktop notifications on every save
-	- [Intro to GoConvey][https://www.youtube.com/watch?v=wlUKRxWEELU]
 
 ## NOTE: Server Configuration will be placed in config/env.json
