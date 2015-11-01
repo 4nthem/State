@@ -30,6 +30,6 @@
 	2. It will auto open a tab showing the state of the tests. This will rerun the tests every time a file is saved.
 	
 	- There is an option for it to send desktop notifications on every save
-	- [Intro to GoConvey](https://www.youtube.com/watch?v=wlUKRxWEELU)
+	- (Intro to GoConvey)[https://www.youtube.com/watch?v=wlUKRxWEELU]
 
 ## NOTE: Server Configuration will be placed in config/env.json
