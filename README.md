@@ -2,12 +2,10 @@
 *A web app that manages teacher/student interaction through grades.*
 
 
-### Installation:
-	1. Make sure you are in the State directory
-	2. Run the command 'go build'
-
-### Launching Application:
-	1. Run the command 'State'
+### Installation and launching App
+	1. Make sure you have gin installed (go get github.com/vendor/codegangsta/gin)
+	2. Run the command 'gin'
+	3. Livereload will now happen on port 3000
 
 ### Testing webserver:
 	1. Run command 'curl http://localhost:3000/users'
@@ -32,4 +30,3 @@
 	- There is an option for it to send desktop notifications on every save
 
 
-## NOTE: Server Configuration will be placed in config/env.json
