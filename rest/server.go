@@ -1,57 +1,28 @@
 package rest
 
-
 import (
-	"github.com/julienschmidt/httprouter"
-	log "github.com/cihub/seelog"
-	// "gopkg.in/mgo.v2"
 	"github.com/4nthem/State/controllers"
-	"github.com/4nthem/State/config"
-	"net/http"
+	log "github.com/cihub/seelog"
+	"github.com/go-martini/martini"
 )
 
+func StartServer() {
 
-type RestServer struct {
-	port int
-}
+	m := martini.Classic()
 
+	user := controllers.NewUserController()
 
+	m.Get("/", user.Home)
 
-func NewRestServer() (r *RestServer){
-	r = &RestServer{port: 3000}
-	return
-}
+	m.Group("/user", func(r martini.Router) {
+		r.Get("", user.Home)           // Don't like this. Its hacky but didn't see better solution
+		r.Get("/new", user.CreateUser) //Obviously this will be a post
+		r.Get("/all", user.GetAllUsers)
+		r.Get("/remove", user.RemoveUser)
+		r.Get("/(?P<name>[a-zA-Z]+)", user.GetUser)
+	}, controllers.TestMiddleware1, controllers.TestMiddleware2)
 
+	log.Info("Starting Server on port 3000")
+	m.Run()
 
-func (r RestServer) StartServer() {
-	// Instantiate a new router
-	router := httprouter.New()
-
-	// Intialize Configurations
-	configuration, err := config.GetConfig()
-	if err != nil {
-		return
-	}
-
-	log.Debug("Confugration: ", configuration)
-
-	//Get a UserController instance
-	userController := controllers.NewUserController()
-
-	// Get all user resources
-	router.GET("/users", userController.GetUsers)
-
-	// Create a new user
-	router.POST("/user", userController.CreateUser)
-
-	// Remove an existing user
-	router.DELETE("/user/:id", userController.RemoveUser)
-
-	// Fire up the server
-	http.ListenAndServe("localhost:3000", router)
-}
-
-
-func (r *RestServer) Close() (err error) {
-	return
 }

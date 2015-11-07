@@ -1,11 +1,9 @@
 package main
 
-
 import (
+	rest "github.com/4nthem/State/rest"
 	log "github.com/cihub/seelog"
-	"github.com/4nthem/State/start"
 )
-
 
 func main() {
 	defer log.Flush()
@@ -18,5 +16,6 @@ func main() {
 		log.ReplaceLogger(logger)
 	}
 
-	start.Run()
+	rest.StartServer()
+
 }
