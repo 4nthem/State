@@ -9,6 +9,7 @@
 
 ### Testing webserver:
 	1. Run command 'curl http://localhost:3000/users'
+	2. Or run in your webbrowser/postman
 
 ### To inject a new dependency:
 	1. Run 'go get PACKAGENAME'
