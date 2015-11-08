@@ -36,16 +36,25 @@
 	1. gin
 	*[gin] listening on port 3000*
 
-	To get a user in the db, open new terminal
-	1. curl http://localhost:3000/users/563f87375872ef08010eeddc
-		You will get the following error in the gin terminal:
-			*2015/11/08 12:04:15 http: proxy error: dial tcp [::1]:3001: getsockopt: connection refused*
-			*[martini] listening on :3001 (development)*
-	Run the command again!
-	2. curl http://localhost:3000/users/563f87375872ef08010eeddc
-	*{"data":{"id":"563f87375872ef08010eeddc","name":"Erik Muro","email":"erik@email.com"},"message":"Successfully found user"}*
+		To GET a user in the db, open new terminal
+		1. curl http://localhost:3000/users/563f87375872ef08010eeddc
+			You will get the following error in the gin terminal:
+				*2015/11/08 12:04:15 http: proxy error: dial tcp [::1]:3001: getsockopt: connection refused*
+				*[martini] listening on :3001 (development)*
+			Please refer to: https://github.com/gin-gonic/gin/issues/159 
+		Run the command again!
+		2. curl http://localhost:3000/users/563f87375872ef08010eeddc
+			*{"data":{"id":"563f87375872ef08010eeddc","name":"Erik Muro","email":"erik@email.com"},"message":"Successfully found user"}*
 
-	In the gin terminal:
-	*[martini] Started GET /users/563f87375872ef08010eeddc for ::1*
-	*[martini] Completed 200 OK in 51.726269ms*
+		In the gin terminal:
+			*[martini] Started GET /users/563f87375872ef08010eeddc for ::1*
+			*[martini] Completed 200 OK in 51.726269ms*
+
+		To POST a user (Create)
+		1. curl -XPOST -H 'Content-Type: application/json' -d '{"name": "Erik Muro", "email": "erik@email.com"}' http://localhost:3000/users
+			*{"data":{"id":"563f8fd45872ef0933ead2a2","name":"test","email":"test@email.com"},"message":"Successfully created user"}*
+
+		In the gin terminal:
+			*[martini] Started POST /users for ::1*
+			*[martini] Completed 200 OK in 44.525796ms*
 
