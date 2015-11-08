@@ -10,3 +10,5 @@ type (
 		Email string        `json:"email" bson:"email"`
 	}
 )
+
+

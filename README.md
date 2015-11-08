@@ -3,7 +3,7 @@
 
 
 ### Installation and launching App
-	1. Make sure you have gin installed (go get github.com/vendor/codegangsta/gin)
+	1. Make sure you have gin installed (go get github.com/codegangsta/gin)
 	2. Run the command 'gin'
 	3. Livereload will now happen on port 3000
 
