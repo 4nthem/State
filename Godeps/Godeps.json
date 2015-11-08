@@ -11,13 +11,27 @@
 			"Rev": "5841159c495ad98691aac2bf90113c040e62bac2"
 		},
 		{
-			"ImportPath": "github.com/julienschmidt/httprouter",
-			"Comment": "v1.1-10-g77a895a",
-			"Rev": "77a895ad01ebc98a4dc95d8355bc825ce80a56f6"
+			"ImportPath": "github.com/codegangsta/inject",
+			"Comment": "v1.0-rc1-10-g33e0aa1",
+			"Rev": "33e0aa1cb7c019ccc3fbe049a8262a6403d30504"
 		},
 		{
-			"ImportPath": "github.com/vrecan/death",
-			"Rev": "f7f16f371539d1c600886ece66f4a102c14da284"
+			"ImportPath": "github.com/dgrijalva/jwt-go",
+			"Comment": "v2.3.0-12-g52c68d1",
+			"Rev": "52c68d1293c6de749708778de956009490672f6e"
+		},
+		{
+			"ImportPath": "github.com/go-martini/martini",
+			"Comment": "v1.0-168-g1766d4b",
+			"Rev": "1766d4b551f29d93db1e721e19b15580699e26cc"
+		},
+		{
+			"ImportPath": "github.com/martini-contrib/render",
+			"Rev": "ec18f8345a1181146728238980606fb1d6f40e8c"
+		},
+		{
+			"ImportPath": "github.com/oxtoacart/bpool",
+			"Rev": "4e1c5567d7c2dd59fa4c7c83d34c2f3528b025d6"
 		},
 		{
 			"ImportPath": "gopkg.in/mgo.v2/bson",

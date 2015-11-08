@@ -1,12 +1,12 @@
 package controllers
 
 import (
-	"encoding/json"
-	"fmt"
 	"net/http"
 
-	"github.com/julienschmidt/httprouter"
+	"github.com/4nthem/State/auth"
 	"github.com/4nthem/State/models"
+	"github.com/go-martini/martini"
+	"github.com/martini-contrib/render"
 	"gopkg.in/mgo.v2/bson"
 )
 
@@ -21,12 +21,24 @@ type (
 // 	return &UserController{session}
 // }
 
-func NewUserController() *UserController {
-	return &UserController{}
+func NewUserController() (userControl *UserController, err error) {
+	if err = auth.InitTokens(); err != nil {
+		return
+	}
+	userControl = &UserController{}
+	return
+}
+
+func (UserController UserController) Home(rend render.Render, req *http.Request, p martini.Params) {
+	rend.JSON(200, map[string]interface{}{"params": p})
+}
+
+func (userController UserController) GetUser(rend render.Render, req *http.Request, p martini.Params) {
+	rend.JSON(200, map[string]interface{}{"specificUser": p})
 }
 
 // gets an individual user
-func (userController UserController) GetUsers(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
+func (userController UserController) GetAllUsers(rend render.Render, req *http.Request, p martini.Params) {
 
 	// get user
 	user := models.User{
@@ -36,29 +48,32 @@ func (userController UserController) GetUsers(writer http.ResponseWriter, reques
 		Email: "johndoe@email.com",
 	}
 
-	userjson, _ := json.Marshal(user)
+	rend.JSON(200, user)
 
-	writer.Header().Set("Content-Type", "application/json")
-	writer.WriteHeader(200)
-	fmt.Fprintf(writer, "Found User: %s", userjson)
 }
 
 // creates a new user
-func (userController UserController) CreateUser(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
+func (userController UserController) CreateUser(rend render.Render, req *http.Request, p martini.Params) {
 
 	// create user
+	user := models.User{
+		// Id:     params.ByName("id"),
+		Id:    bson.NewObjectId(),
+		Name:  "John Doe",
+		Email: "johndoe@email.com",
+	}
 
-	writer.Header().Set("Content-Type", "application/json")
-	writer.WriteHeader(201)
-	fmt.Fprintf(writer, "Created User")
+	theToken, _ := auth.NewToken("student", user)
+
+	rend.JSON(200, map[string]interface{}{"NewToken": theToken})
+
 }
 
 // removes an existing user
-func (userController UserController) RemoveUser(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
+func (userController UserController) RemoveUser(rend render.Render, req *http.Request, p martini.Params) {
 
 	// delete user
 
-	writer.Header().Set("Content-Type", "application/json")
-	writer.WriteHeader(200)
-	fmt.Fprintf(writer, "Deleted User")
+	rend.JSON(200, "deleted User")
+
 }
