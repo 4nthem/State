@@ -10,6 +10,7 @@ import (
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 	"encoding/json"
+	"io/ioutil"
 )
 
 type (
@@ -42,7 +43,7 @@ func (userController UserController) GetUser(rend render.Render, req *http.Reque
     // Fetch user
     if err := userController.collection.FindId(oid).One(&user); err != nil {
        
-        rend.JSON(404, map[string]interface{}{"message": "Failed to found user", "data": "nil" })
+        rend.JSON(404, map[string]interface{}{"message": "Failed to found user", "data": err })
     }
 
 	rend.JSON(200, map[string]interface{}{"message": "Successfully found user", "data": user})
@@ -51,10 +52,16 @@ func (userController UserController) GetUser(rend render.Render, req *http.Reque
 // gets an individual user
 func (userController UserController) GetAllUsers(rend render.Render, req *http.Request, p martini.Params) {
 
+	var users []models.User
+
 	// get users
+	if err := userController.collection.Find(nil).All(&users); err != nil {
+       
+        rend.JSON(404, map[string]interface{}{"message": "Failed to found users", "data": err })
+    }
 
+	rend.JSON(200, map[string]interface{}{"message": "Successfully found users", "data": users})
 
-	// rend.JSON(200, user)
 
 }
 
@@ -73,7 +80,10 @@ func (userController UserController) CreateUser(rend render.Render, req *http.Re
 
 	// theToken, _ := auth.NewToken("student", user)
 
-	userController.collection.Insert(user)
+	if err := userController.collection.Insert(user); err != nil {
+       
+        rend.JSON(404, map[string]interface{}{"message": "Failed to create user", "data": err })
+    }
 
 
 	// rend.JSON(200, map[string]interface{}{"NewToken": theToken})
@@ -84,17 +94,44 @@ func (userController UserController) CreateUser(rend render.Render, req *http.Re
 // removes an existing user
 func (userController UserController) DeleteUser(rend render.Render, req *http.Request, p martini.Params) {
 
-	// delete user
+	id := p["id"]
+	// Grab id
+    oid := bson.ObjectIdHex(id)
 
-	rend.JSON(200, "deleted User")
+	// delete user
+	if err := userController.collection.RemoveId(oid); err != nil {
+       
+        rend.JSON(404, map[string]interface{}{"message": "Failed to delete user", "data": err })
+    }
+
+	rend.JSON(200, map[string]interface{}{"message": "Successfully deleted user", "data": nil})
 
 }
 
 // update an existing user
 func (userController UserController) UpdateUser(rend render.Render, req *http.Request, p martini.Params) {
 
-	// update user
+	// bind model attributes to user var
+    // user := models.User{}
 
-	rend.JSON(200, "updated User")
+	id := p["id"]
+	// Grab id
+    oid := bson.ObjectIdHex(id)
+
+    // Populate the user data from the request, should improve using params
+    data := map[string]interface{}{}
+    body, _ := ioutil.ReadAll(req.Body)
+    json.Unmarshal(body, &data)
+
+
+
+	// update user
+	if err := userController.collection.UpdateId(oid, bson.M{"$set": data }); err != nil {
+       
+        rend.JSON(404, map[string]interface{}{"message": "Failed to update user", "data": err })
+        return
+    }
+
+	rend.JSON(200, map[string]interface{}{"message": "Successfully updated user", "data": nil})
 
 }

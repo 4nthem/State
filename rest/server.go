@@ -34,8 +34,10 @@ func StartServer() {
 		r.Post("", user.CreateUser) 
 		// r.Get("/(?P<name>[a-zA-Z]+)", user.GetUser)    //get user's profile
 		r.Get("/:id", user.GetUser)
-		r.Delete("/(?P<name>[a-zA-Z]+)", user.DeleteUser) //delete user's profile and associations 
-		r.Patch("/(?P<name>[a-zA-Z]+)", user.UpdateUser) //update user's profile
+		r.Delete("/:id", user.DeleteUser)
+		r.Put("/:id", user.UpdateUser)
+		// r.Delete("/(?P<name>[a-zA-Z]+)", user.DeleteUser) //delete user's profile and associations 
+		// r.Patch("/(?P<name>[a-zA-Z]+)", user.UpdateUser) //update user's profile
 	})
 
 	m.Run()
@@ -45,7 +47,7 @@ func StartServer() {
 
 func getSession() *mgo.Database {  
     // Connect to our local mongo, gets the state database
-    db_session, err := mgo.Dial("mongodb://<user>:<password>@ds051534.mongolab.com:51534/state")
+    db_session, err := mgo.Dial("mongodb://4nthemAdmin:F0rTh3Ch1ldren@ds051534.mongolab.com:51534/state")
 
     // Check if connection error, is mongo running?
     if err != nil {
