@@ -73,5 +73,8 @@
 
 			
 
+	To DELETE a user, 
+		1.  curl -X DELETE http://localhost:3000/users/:id, where :id = 5647d7f65872ef056430b0fa
+
 
 
